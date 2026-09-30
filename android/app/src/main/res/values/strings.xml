@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Règlements</string>
+    <string name="title_activity_main">Règlements</string>
+    <string name="package_name">tn.yaiche.reglements</string>
+    <string name="custom_url_scheme">tn.yaiche.reglements</string>
+</resources>

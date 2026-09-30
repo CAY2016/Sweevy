@@ -1,0 +1,6 @@
+{
+  "appId": "tn.yaiche.reglements",
+  "appName": "Règlements",
+  "webDir": "www",
+  "android": { "allowMixedContent": false }
+}

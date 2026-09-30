@@ -1,0 +1,1073 @@
+<title>Règlements des activités</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: single mobile-first column (max 720px), sticky header (season + children), bottom tab bar + floating "add" button, bottom sheets for forms */
+:root{
+  --bg:#F4F6F3; --surface:#FFFFFF; --ink:#16201E; --muted:#5C6964; --line:#DCE3DE;
+  --accent:#0E6B5C; --accent-ink:#FFFFFF; --accent-soft:#DCEEE9;
+  --due:#B03F2D; --due-soft:#F7E2DC; --ok:#2B7A47; --ok-soft:#DFF0E4; --warn:#8F6200; --warn-soft:#F5EACD;
+  --extra:#5B4BB0; --extra-soft:#E8E4F7;
+  --scrim:rgba(10,18,16,.45); --shadow:0 10px 30px rgba(15,30,26,.12);
+  --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body:"Manrope", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F1513; --surface:#18211E; --ink:#E6EEEA; --muted:#97A5A0; --line:#2B3632;
+  --accent:#4FC2A8; --accent-ink:#06201A; --accent-soft:#183A33;
+  --due:#F08A74; --due-soft:#3B2420; --ok:#6CCB8E; --ok-soft:#1B3325; --warn:#E5B64C; --warn-soft:#3A3019;
+  --extra:#B3A6F2; --extra-soft:#2A2545;
+  --scrim:rgba(0,0,0,.6); --shadow:0 10px 30px rgba(0,0,0,.45); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F1513; --surface:#18211E; --ink:#E6EEEA; --muted:#97A5A0; --line:#2B3632;
+  --accent:#4FC2A8; --accent-ink:#06201A; --accent-soft:#183A33;
+  --due:#F08A74; --due-soft:#3B2420; --ok:#6CCB8E; --ok-soft:#1B3325; --warn:#E5B64C; --warn-soft:#3A3019;
+  --extra:#B3A6F2; --extra-soft:#2A2545;
+  --scrim:rgba(0,0,0,.6); --shadow:0 10px 30px rgba(0,0,0,.45); color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.45;-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit;color:inherit}
+.num{font-variant-numeric:tabular-nums}
+.wrap{max-width:720px;margin:0 auto;padding-inline:16px;padding-block:0 150px}
+
+/* Header */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+.top-in{max-width:720px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap}
+.brand{font-family:var(--f-display);font-weight:700;font-size:20px;letter-spacing:-.01em;margin:0}
+.season{display:flex;align-items:center;gap:2px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:2px}
+.season button{border:0;background:transparent;width:32px;height:32px;border-radius:999px;cursor:pointer;color:var(--muted);font-size:18px;line-height:1}
+.season button:hover{background:var(--accent-soft);color:var(--accent)}
+.season span{font-weight:700;font-size:13px;padding:0 6px;min-width:92px;text-align:center}
+.kids{max-width:720px;margin:0 auto;padding:0 16px 10px;display:flex;gap:6px;overflow-x:auto}
+.kid{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px 6px 8px;font-size:13px;font-weight:700;cursor:pointer;display:flex;gap:6px;align-items:center;white-space:nowrap}
+.kid[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.kid .ini{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:11px;color:#fff}
+
+h2.sec{font-family:var(--f-display);font-weight:600;font-size:17px;margin:28px 0 10px;display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+h2.sec small{font-family:var(--f-body);font-size:13px;font-weight:500;color:var(--muted)}
+h3.kidh{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:16px 2px 8px;display:flex;align-items:center;gap:8px}
+.muted{color:var(--muted)}
+
+/* Summary */
+.summary{margin-top:16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);display:grid;grid-template-columns:repeat(4,1fr)}
+.summary>div{padding:14px 16px;min-width:0;border-left:1px solid var(--line)}
+.summary>div:first-child{border-left:0}
+.summary .lab{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.summary .val{font-family:var(--f-display);font-weight:700;font-size:22px;margin-top:4px;white-space:nowrap}
+.summary .val.due{color:var(--due)} .summary .val.warn{color:var(--warn)}
+.summary .sub{font-size:12px;color:var(--muted)}
+.split{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--muted);padding:0 2px}
+.split b{color:var(--ink)}
+@media (max-width:560px){.summary{grid-template-columns:1fr 1fr}.summary>div:nth-child(3){border-left:0}.summary>div:nth-child(n+3){border-top:1px solid var(--line)}}
+
+/* Lists */
+.list{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.row{display:flex;align-items:center;gap:12px;padding:12px 14px;border-top:1px solid var(--line);width:100%;text-align:left;background:transparent;border-left:0;border-right:0;border-bottom:0;cursor:pointer}
+.row:first-child{border-top:0}
+.row:hover{background:color-mix(in srgb,var(--accent-soft) 45%,transparent)}
+.row .main{flex:1;min-width:0}
+.row .t{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row .s{font-size:13px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row .amt{font-weight:700;white-space:nowrap;text-align:right}
+.row .end{display:grid;justify-items:end;gap:3px}
+.dot{width:10px;height:10px;border-radius:50%;flex:none}
+.pill{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.pill.ok{background:var(--ok-soft);color:var(--ok)} .pill.due{background:var(--due-soft);color:var(--due)}
+.pill.warn{background:var(--warn-soft);color:var(--warn)} .pill.neutral{background:var(--accent-soft);color:var(--accent)}
+.pill.extra{background:var(--extra-soft);color:var(--extra)}
+.pill svg{width:12px;height:12px}
+.month-h{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700;padding:8px 2px;display:flex;justify-content:space-between;margin-top:14px}
+
+/* Activity cards */
+.acts{display:grid;gap:10px}
+.act{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px;display:grid;gap:10px}
+.act-h{display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap}
+.act-h .name{display:flex;align-items:center;gap:8px;font-weight:700;min-width:0}
+.act-meta{font-size:13px;color:var(--muted)}
+.strip{display:flex;flex-wrap:wrap;gap:4px}
+.chip-m{font-size:11px;font-weight:700;padding:4px 7px;border-radius:7px;border:1px solid var(--line);color:var(--muted);min-width:40px;text-align:center}
+.chip-m.paid{background:var(--ok-soft);color:var(--ok);border-color:transparent}
+.chip-m.late{background:var(--due-soft);color:var(--due);border-color:var(--due)}
+.chip-m.future{opacity:.55;border-style:dashed}
+
+/* Buttons */
+.btn{border:1px solid var(--line);background:var(--surface);padding:10px 16px;border-radius:10px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px;justify-content:center}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn.primary:hover{filter:brightness(1.07);color:var(--accent-ink)}
+.btn.danger{color:var(--due);border-color:var(--due-soft)}
+.btn.danger.armed{background:var(--due);color:var(--surface);border-color:var(--due)}
+.btn:disabled{opacity:.5;cursor:default}
+.btn-sm{padding:6px 12px;font-size:13px;border-radius:8px}
+.btn svg{width:18px;height:18px}
+.link{border:0;background:none;color:var(--accent);font-weight:600;cursor:pointer;padding:0}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* Empty */
+.empty{background:var(--surface);border:1px dashed var(--line);border-radius:var(--r);padding:28px 20px;text-align:center;display:grid;gap:10px;justify-items:center;margin-top:16px}
+.empty h3{font-family:var(--f-display);font-weight:600;font-size:18px;margin:0}
+.empty p{margin:0;color:var(--muted);max-width:44ch}
+
+.bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:16px}
+.bar select{flex:1;min-width:0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px;display:grid;gap:12px}
+.card p{margin:0}
+
+/* Nav */
+nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:6;background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+.tabs-in{max-width:720px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
+.tabs button{border:0;background:none;padding:10px 4px 12px;display:grid;justify-items:center;gap:3px;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer}
+.tabs button svg{width:22px;height:22px}
+.tabs button[aria-current="page"]{color:var(--accent)}
+.fab{position:fixed;right:max(16px,calc(50% - 344px));bottom:calc(76px + env(safe-area-inset-bottom,0px));z-index:7;border:0;background:var(--accent);color:var(--accent-ink);border-radius:999px;padding:14px 20px 14px 16px;font-weight:700;display:flex;gap:8px;align-items:center;box-shadow:var(--shadow);cursor:pointer}
+.fab svg{width:20px;height:20px}
+
+/* Sheet */
+.sheet-wrap{position:fixed;inset:0;z-index:20;display:flex;align-items:flex-end;justify-content:center}
+.scrim{position:absolute;inset:0;background:var(--scrim)}
+.sheet{position:relative;background:var(--bg);width:100%;max-width:560px;max-height:92%;overflow:auto;border-radius:18px 18px 0 0;padding:18px 16px calc(20px + env(safe-area-inset-bottom,0px));box-shadow:var(--shadow)}
+@media (min-width:640px){.sheet-wrap{align-items:center}.sheet{border-radius:18px;max-height:88%}}
+.sheet h3{font-family:var(--f-display);font-weight:700;font-size:20px;margin:0 0 14px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.x{border:0;background:var(--surface);width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:18px;color:var(--muted);flex:none}
+.form{display:grid;gap:14px}
+.field{display:grid;gap:6px;min-width:0}
+.field>label,.field>.lab{font-size:13px;font-weight:600;color:var(--muted)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+input[type=text],input[type=date],input[inputmode],select,textarea{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-height:44px}
+textarea{min-height:64px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:0;border-color:transparent}
+.amount-in{position:relative}
+.amount-in input{padding-right:42px;font-weight:700;font-size:17px}
+.amount-in span{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--muted);font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 12px;font-size:13px;font-weight:600;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.chip.is-paid:not([aria-pressed="true"]){color:var(--ok);border-style:dashed}
+.seg{display:grid;grid-template-columns:1fr 1fr;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:3px;gap:3px}
+.seg button{border:0;background:transparent;border-radius:9px;padding:9px;font-weight:700;font-size:14px;cursor:pointer;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.hint{font-size:12px;color:var(--muted)}
+.pieces{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:8px}
+.piece{position:relative;aspect-ratio:3/4;max-width:100%;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface);display:grid;place-items:center;text-align:center;font-size:11px;color:var(--muted);padding:0;cursor:pointer;width:100%}
+.piece img{width:100%;height:100%;object-fit:cover}
+.piece .pdf{display:grid;gap:4px;justify-items:center;padding:6px;word-break:break-all}
+.piece .pdf b{font-family:var(--f-display);font-size:16px;color:var(--due)}
+.piece .rm{position:absolute;top:4px;right:4px;width:26px;height:26px;border-radius:50%;border:0;background:var(--scrim);color:#fff;cursor:pointer}
+.add-piece{border:1.5px dashed var(--line);border-radius:10px;aspect-ratio:3/4;display:grid;place-items:center;align-content:center;gap:4px;color:var(--accent);font-weight:600;font-size:12px;cursor:pointer;background:transparent}
+.add-piece svg{width:24px;height:24px}
+.ocr{display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:var(--accent-soft);border-radius:10px;padding:10px 12px;font-size:13px}
+.ocr p{margin:0;flex:1;min-width:160px}
+.spin{width:22px;height:22px;border-radius:50%;border:3px solid var(--line);border-top-color:var(--accent);animation:sp 0.9s linear infinite;flex:none}
+.btn .spin{width:16px;height:16px;border-width:2px}
+@keyframes sp{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.spin{animation-duration:3s}}
+.actions{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-top:4px}
+.actions .grow{margin-right:auto}
+.swatches{display:flex;gap:8px;flex-wrap:wrap}
+.sw{width:32px;height:32px;border-radius:50%;border:3px solid transparent;cursor:pointer}
+.sw[aria-pressed="true"]{border-color:var(--ink)}
+.detail{display:grid;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px}
+.detail .big{font-family:var(--f-display);font-weight:700;font-size:28px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:14px;margin-top:8px}
+.kv dt{color:var(--muted)} .kv dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.viewer{position:fixed;inset:0;z-index:40;background:rgba(0,0,0,.92);display:grid;grid-template-rows:auto 1fr;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.viewer .vbar{display:flex;justify-content:flex-end;gap:8px;padding:10px 12px}
+.viewer .vbar button{border:0;background:rgba(255,255,255,.14);color:#fff;border-radius:999px;padding:8px 14px;font-weight:600;cursor:pointer}
+.viewer .vimg{overflow:auto;display:grid;place-items:center;padding:8px}
+.viewer img{max-width:100%;max-height:100%;object-fit:contain}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(140px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-weight:600;z-index:50;max-width:calc(100% - 32px);box-shadow:var(--shadow)}
+.notice{margin-top:16px;padding:12px 14px;border-radius:10px;background:var(--warn-soft);color:var(--warn);font-size:14px}
+</style>
+
+<header class="top">
+  <div class="top-in">
+    <h1 class="brand">Règlements des activités</h1>
+    <div class="season" aria-label="Saison">
+      <button id="season-prev" aria-label="Saison précédente">‹</button>
+      <span id="season-label" class="num">2026-2027</span>
+      <button id="season-next" aria-label="Saison suivante">›</button>
+    </div>
+  </div>
+  <div class="kids" id="kids" hidden></div>
+</header>
+
+<main class="wrap" id="view">
+  <div class="empty"><div class="spin"></div><p>Chargement de vos règlements…</p></div>
+</main>
+
+<button class="fab" id="fab" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Règlement</button>
+
+<nav class="tabs" aria-label="Sections">
+  <div class="tabs-in">
+    <button data-tab="accueil" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Suivi</button>
+    <button data-tab="paiements"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg>Règlements</button>
+    <button data-tab="activites"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a14 14 0 0 0 0 18M3.5 9h17M3.5 15h17"/></svg>Activités</button>
+    <button data-tab="reglages"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c.6-3.4 3-5.4 6-5.4s5.4 2 6 5.4"/><circle cx="17.5" cy="9" r="2.4"/><path d="M16 14.2c2.5.2 4.4 2 4.9 4.8"/></svg>Famille</button>
+  </div>
+</nav>
+
+<div class="sheet-wrap" id="sheet" hidden>
+  <div class="scrim" id="scrim"></div>
+  <div class="sheet" role="dialog" aria-modal="true" id="sheet-body"></div>
+</div>
+<div class="viewer" id="viewer" hidden>
+  <div class="vbar"><button id="v-save">Enregistrer</button><button id="v-close">Fermer</button></div>
+  <div class="vimg"><img id="v-img" alt="Justificatif"></div>
+</div>
+<input type="file" id="import-file" accept="application/json,.json" hidden>
+<div class="toast" id="toast" hidden role="status"></div>
+
+<script>
+(() => {
+/* ============ utilities ============ */
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const N = window.NATIVE || null;          // present only in the Android app
+const IS_APP = !!N;
+const APP_VERSION = '2.0';
+const MOIS = ['janv.','févr.','mars','avr.','mai','juin','juil.','août','sept.','oct.','nov.','déc.'];
+const MOIS_L = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+const FREQ = {mensuel:'Mensuel', trimestriel:'Par trimestre', annuel:'Annuel (saison)', ponctuel:'Ponctuel'};
+const FREQ_UNIT = {mensuel:'/ mois', trimestriel:'/ trimestre', annuel:'/ saison', ponctuel:''};
+const MODES = ['Espèces','Chèque','Virement','Carte','Autre'];
+const CATS = ['Inscription','Licence / assurance','Tenue / équipement','Compétition / tournoi','Sortie / stage','Certificat médical','Autre'];
+const COLORS = ['#0E8A74','#3F6FD8','#C8553D','#9B5DE5','#D69E2E','#2B9EB3'];
+const TRIM = [{k:'T1',label:'1er trimestre',court:'1er trim.',sub:'sept.–déc.',idx:0},{k:'T2',label:'2e trimestre',court:'2e trim.',sub:'janv.–mars',idx:4},{k:'T3',label:'3e trimestre',court:'3e trim.',sub:'avr.–juin',idx:7}];
+const EXT = {'image/jpeg':'jpg','image/png':'png','image/webp':'webp','application/pdf':'pdf'};
+const ICON_CLIP = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11l-8.5 8.5a5 5 0 0 1-7-7L14 4a3.3 3.3 0 0 1 4.7 4.7l-8.5 8.5a1.7 1.7 0 0 1-2.4-2.4L15.5 7"/></svg>';
+const ICON_SCAN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"/><path d="M8 9h8M8 12h8M8 15h5"/></svg>';
+
+const pad = n => String(n).padStart(2,'0');
+const ymd = d => d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+const today = new Date();
+const todayKey = ymd(today);
+const thisMonthKey = todayKey.slice(0,7);
+const seasonOf = d => d.getMonth() >= 8 ? d.getFullYear() : d.getFullYear()-1;
+const curSeason = seasonOf(today);
+const sLabel = sy => sy + '-' + (sy+1);
+const seasonMonths = sy => Array.from({length:12}, (_,i) => { const m = (8+i)%12; const y = i < 4 ? sy : sy+1; return y+'-'+pad(m+1); });
+const monthShort = k => MOIS[Number(k.slice(5,7))-1];
+const curIdx = sy => sy < curSeason ? 99 : sy > curSeason ? -1 : (today.getMonth()+4)%12;
+const toNum = v => { const n = Number(String(v ?? '').replace(/\s/g,'').replace(',','.')); return isFinite(n) ? n : 0; };
+const fmt = n => { n = Number(n)||0; const whole = Math.abs(n-Math.round(n)) < 0.0005; return n.toLocaleString('fr-FR',{minimumFractionDigits: whole?0:3, maximumFractionDigits:3}) + ' DT'; };
+const fmtDate = s => { if(!s) return ''; const [y,m,d] = s.split('-'); return Number(d)+' '+MOIS[Number(m)-1]+' '+y; };
+const newId = () => Array.from(crypto.getRandomValues(new Uint8Array(15)), b => 'abcdefghijklmnopqrstuvwxyz0123456789'[b % 36]).join('');
+const blobToB64 = blob => new Promise((res,rej) => { const r = new FileReader(); r.onload = () => res(String(r.result).split(',')[1] || ''); r.onerror = () => rej(r.error); r.readAsDataURL(blob); });
+const b64ToBlob = (b64, type) => { const bin = atob(b64); const a = new Uint8Array(bin.length); for(let i=0;i<bin.length;i++) a[i] = bin.charCodeAt(i); return new Blob([a], {type}); };
+const withoutId = ({id, ...rest}) => rest;
+
+/* ============ state ============ */
+let B = null;
+let enfants = [], acts = [], pays = [], reglages = {payeurs:['Papa','Maman']};
+const loaded = {e:false, a:false, p:false, r:false};
+const state = {tab:'accueil', season:curSeason, filter:'all', enfant:'all'};
+let F = null;
+
+/* ============ backends ============ */
+async function artifactBackend(){
+  const C = window.claude;
+  const use = n => C && C.use ? C.use(n).catch(() => null) : Promise.resolve(null);
+  const [db, assets, downloads, user, sample] = await Promise.all(['db','assets','downloads','user','sample'].map(use));
+  if(!db) return null;
+  let canWrite = true;
+  if(user){ try{ if(await user.can('data.write') === false) canWrite = false; }catch{} }
+  let ocrOk = false;
+  if(sample){ try{ const l = await sample.limits(); ocrOk = !!(l && l.images); }catch{} }
+  const blobOf = async id => { const r = await fetch('/_blob/'+id); if(!r.ok) throw new Error('absent'); return r.blob(); };
+  return {
+    kind:'artifact', canWrite,
+    watch(col, cb, err){ return db.collection(col).onSnapshot(s => cb(s.docs.map(d => ({id:d.id, ...d.data()}))), err); },
+    async add(col, data){ const r = await db.collection(col).add(data); return r.id; },
+    set: (col, id, data) => db.collection(col).doc(id).set(data),
+    del: (col, id) => db.collection(col).doc(id).delete(),
+    files: {
+      canUpload: !!assets && canWrite,
+      async upload(blob, type){ const r = await assets.upload(blob, {type}); return {id:r.id, type:r.contentType}; },
+      src: id => Promise.resolve('/_blob/'+id),
+      srcSync: id => '/_blob/'+id,
+      blob: blobOf,
+      del: id => assets ? assets.delete(id).catch(() => {}) : Promise.resolve(),
+      async openPdf(piece){ const a = document.createElement('a'); a.href = '/_blob/'+piece.id; a.target = '_blank'; a.rel = 'noopener'; document.body.appendChild(a); a.click(); a.remove(); },
+    },
+    save: downloads ? (filename, data) => downloads.save({filename, data}) : null,
+    ocr: ocrOk ? blob => ocrClaude(sample, blob) : null,
+    ocrAuto: false,
+  };
+}
+
+async function localBackend(){
+  const STORES = ['enfants','activites','paiements','reglages','fichiers'];
+  const idb = await new Promise((res, rej) => {
+    const r = indexedDB.open('reglements-activites', 1);
+    r.onupgradeneeded = () => STORES.forEach(n => { if(!r.result.objectStoreNames.contains(n)) r.result.createObjectStore(n, {keyPath:'id'}); });
+    r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error);
+  });
+  try{ navigator.storage && navigator.storage.persist && navigator.storage.persist(); }catch{}
+  const run = (store, mode, fn) => new Promise((res, rej) => {
+    const t = idb.transaction(store, mode); let out; const req = fn(t.objectStore(store));
+    if(req) req.onsuccess = () => { out = req.result; };
+    t.oncomplete = () => res(out); t.onerror = () => rej(t.error); t.onabort = () => rej(t.error);
+  });
+  const listeners = {};
+  const notify = async col => { const rows = await run(col, 'readonly', s => s.getAll()); (listeners[col] || []).forEach(cb => cb(rows)); };
+  const urls = new Map();
+  const blobOf = async id => { const r = await run('fichiers', 'readonly', s => s.get(id)); if(!r) throw new Error('absent'); return r.blob; };
+  return {
+    kind:'app', canWrite:true,
+    watch(col, cb){ (listeners[col] = listeners[col] || []).push(cb); notify(col); return () => {}; },
+    async add(col, data){ const id = newId(); await run(col, 'readwrite', s => s.put({...data, id})); notify(col); return id; },
+    async set(col, id, data){ await run(col, 'readwrite', s => s.put({...data, id})); notify(col); },
+    async del(col, id){ await run(col, 'readwrite', s => s.delete(id)); notify(col); },
+    files: {
+      canUpload: true,
+      async upload(blob, type){ const id = newId(); await run('fichiers', 'readwrite', s => s.put({id, type, blob})); return {id, type}; },
+      blob: blobOf,
+      async src(id){ if(urls.has(id)) return urls.get(id); const u = URL.createObjectURL(await blobOf(id)); urls.set(id, u); return u; },
+      srcSync: id => urls.get(id) || '',
+      async del(id){ try{ await run('fichiers', 'readwrite', s => s.delete(id)); }catch{} const u = urls.get(id); if(u){ URL.revokeObjectURL(u); urls.delete(id); } },
+      async openPdf(piece){ const uri = await writeCache(piece.nom || 'justificatif.pdf', await blobOf(piece.id)); await N.FileOpener.open({filePath:uri, contentType:'application/pdf'}); },
+    },
+    save: saveNative,
+    ocr: ocrDevice,
+    ocrAuto: true,
+  };
+}
+
+async function writeCache(name, blob){
+  const safe = String(name).replace(/[^\w.\-]+/g, '_').slice(-120) || 'fichier';
+  const r = await N.Filesystem.writeFile({path:safe, data:await blobToB64(blob), directory:N.Directory.Cache});
+  return r.uri;
+}
+async function saveNative(filename, data){
+  const blob = data instanceof Blob ? data : new Blob([data], {type:'text/plain'});
+  const uri = await writeCache(filename, blob);
+  try{ await N.Share.share({title:filename, files:[uri], dialogTitle:'Enregistrer ou envoyer'}); }
+  catch(e){ const m = String(e && (e.message || e)); if(/cancel/i.test(m)) throw {code:'declined'}; throw e; }
+  return {status:'saved'};
+}
+
+/* ============ receipt reading ============ */
+async function ocrClaude(sample, blob){
+  const prompt = `Tu lis la photo d'un reçu ou d'une facture de paiement pour une activité d'enfant (club de sport, école de musique, cours, etc.) en Tunisie. Les montants sont en dinars tunisiens (DT ou TND), souvent écrits avec 3 décimales : « 60,000 DT » signifie 60 dinars.
+Réponds uniquement avec un objet JSON de cette forme :
+{"montant": 60, "date": "2026-10-03", "reference": "0452", "libelle": "Cotisation octobre", "mois": ["2026-10"]}
+- montant : le total payé en dinars (nombre), ou null
+- date : la date du paiement au format AAAA-MM-JJ, ou null
+- reference : le numéro du reçu, de la facture ou du chèque, ou null
+- libelle : ce qui est payé, en quelques mots, ou null
+- mois : les mois couverts s'ils sont indiqués (format AAAA-MM), sinon []`;
+  const r = await sample.json(prompt, {images:blob});
+  return r && typeof r === 'object' ? r : {};
+}
+async function ocrDevice(blob){
+  const uri = await writeCache('lecture-recu.jpg', blob);
+  const r = await N.TextRecognition.processImage({path:uri});
+  return parseReceipt((r && r.text) || '');
+}
+function parseAmount(s){
+  s = s.replace(/[\s ]/g, '');
+  const lastC = s.lastIndexOf(','), lastD = s.lastIndexOf('.');
+  if(lastC >= 0 && lastD >= 0){ const dec = Math.max(lastC, lastD); s = s.slice(0, dec).replace(/[.,]/g, '') + '.' + s.slice(dec+1); }
+  else s = s.replace(',', '.');
+  const n = Number(s); return isFinite(n) ? n : 0;
+}
+function parseReceipt(text){
+  const out = {};
+  const lines = text.split(/\n+/).map(l => l.trim()).filter(Boolean);
+  const dm = text.match(/\b(\d{1,2})\s*[\/.\-]\s*(\d{1,2})\s*[\/.\-]\s*(20\d{2}|\d{2})\b/);
+  if(dm){ const d = +dm[1], m = +dm[2]; let y = dm[3]; if(y.length === 2) y = '20'+y; if(d >= 1 && d <= 31 && m >= 1 && m <= 12) out.date = `${y}-${pad(m)}-${pad(d)}`; }
+  const numRe = /(\d{1,3}(?:[ . ]\d{3})+(?:,\d{1,3})?|\d+(?:[.,]\d{1,3})?)\s*(DT|TND|D\b|dinars?)?/gi;
+  let best = null;
+  lines.forEach(line => {
+    const key = /(total|montant|net\s*[àa]\s*payer|pay[ée]|somme|r[ée]gl[ée]|prix)/i.test(line);
+    let m; numRe.lastIndex = 0;
+    while((m = numRe.exec(line))){
+      if(/^\d{1,2}[\/.\-]\d{1,2}$/.test(m[1])) continue;
+      const v = parseAmount(m[1]); if(!(v > 0) || v > 100000) continue;
+      if(/\b20\d{2}\b/.test(m[1]) && !m[2]) continue;
+      const score = (m[2] ? 2 : 0) + (key ? 3 : 0);
+      if(score === 0) continue;
+      if(!best || score > best.score || (score === best.score && v > best.v)) best = {v, score};
+    }
+  });
+  if(best) out.montant = best.v;
+  const rm = text.match(/(?:re[çc]u|facture|quittance|n[°o]|num[ée]ro|ch[èe]que)\s*(?:n[°o])?\s*[:#.]?\s*([A-Z0-9][A-Z0-9\-\/]{1,20})/i);
+  if(rm && /\d/.test(rm[1])) out.reference = rm[1];
+  const mois = [];
+  MOIS_L.forEach((nom, i) => { if(new RegExp('\\b' + nom.normalize('NFD').replace(/[̀-ͯ]/g,''), 'i').test(text.normalize('NFD').replace(/[̀-ͯ]/g,''))){ const y = i >= 8 ? state.season : state.season + 1; mois.push(y + '-' + pad(i+1)); } });
+  out.mois = mois;
+  return out;
+}
+
+/* ============ derived ============ */
+const actById = id => acts.find(a => a.id === id);
+const kidById = id => enfants.find(e => e.id === id);
+const kidsSorted = () => [...enfants].sort((a,b) => (a.creeLe||'').localeCompare(b.creeLe||''));
+const kidOf = a => (a && a.enfantId && kidById(a.enfantId)) ? a.enfantId : (kidsSorted()[0] ? kidsSorted()[0].id : null);
+const inKid = a => state.enfant === 'all' || kidOf(a) === state.enfant;
+const activeActs = () => acts.filter(a => !a.archive).sort((a,b) => (a.nom||'').localeCompare(b.nom||'','fr'));
+const payVisible = p => state.enfant === 'all' || kidOf(actById(p.activiteId)) === state.enfant;
+const isExtra = p => p.type === 'annexe';
+const payeurs = () => (reglages.payeurs || []).filter(Boolean).length ? reglages.payeurs.filter(Boolean) : ['Papa','Maman'];
+function periodsFor(a, sy){
+  if(!a) return [];
+  const d = a.debut ?? 0, f = a.fin ?? 9;
+  if(a.frequence === 'mensuel') return seasonMonths(sy).slice(d, f+1).map((k,i) => ({k, label:monthShort(k), court:monthShort(k), idx:d+i}));
+  if(a.frequence === 'trimestriel') return TRIM.map(t => ({...t}));
+  if(a.frequence === 'annuel') return [{k:'SAISON', label:'Saison '+sLabel(sy), court:'Saison', idx:d}];
+  return [];
+}
+function statusFor(a, sy){
+  const lab = sLabel(sy), paid = new Set(); let total = 0, extra = 0, n = 0;
+  for(const p of pays) if(p.activiteId === a.id && p.saison === lab){
+    if(isExtra(p)) extra += toNum(p.montant);
+    else { (p.periodes||[]).forEach(k => paid.add(k)); total += toNum(p.montant); }
+    n++;
+  }
+  const ci = curIdx(sy);
+  const items = periodsFor(a, sy).map(p => ({...p, paid:paid.has(p.k), due:p.idx <= ci}));
+  return {items, unpaid:items.filter(i => i.due && !i.paid), total, extra, n};
+}
+function periodText(p){
+  if(isExtra(p)) return [p.categorie, p.libelle].filter(Boolean).join(' · ');
+  const ks = p.periodes || [];
+  return ks.map(k => /^\d{4}-\d{2}$/.test(k) ? monthShort(k) : k === 'SAISON' ? 'Saison' : (TRIM.find(t => t.k === k) || {}).court || k).join(', ');
+}
+const seasonPays = sy => pays.filter(p => p.saison === sLabel(sy) && payVisible(p));
+const kidBadge = id => { const k = kidById(id); if(!k) return ''; return `<span class="ini" style="background:${esc(k.couleur||'#3F6FD8')}">${esc((k.prenom||'?').slice(0,1).toUpperCase())}</span>`; };
+
+/* ============ render ============ */
+function render(){
+  $('#season-label').textContent = sLabel(state.season);
+  $$('.tabs button').forEach(b => { if(b.dataset.tab === state.tab) b.setAttribute('aria-current','page'); else b.removeAttribute('aria-current'); });
+  if(state.enfant !== 'all' && !kidById(state.enfant)) state.enfant = 'all';
+  const kids = kidsSorted(), kbar = $('#kids');
+  kbar.hidden = kids.length < 2 || state.tab === 'reglages';
+  if(!kbar.hidden) kbar.innerHTML = `<button class="kid" data-kid="all" aria-pressed="${state.enfant==='all'}">Tous</button>` + kids.map(k => `<button class="kid" data-kid="${k.id}" aria-pressed="${state.enfant===k.id}">${kidBadge(k.id)}${esc(k.prenom)}</button>`).join('');
+  const v = $('#view');
+  if(!B) return;
+  if(!(loaded.a && loaded.p && loaded.e)){ v.innerHTML = '<div class="empty"><div class="spin"></div><p>Chargement de vos règlements…</p></div>'; return; }
+  $('#fab').hidden = !B.canWrite || !acts.length || state.tab === 'activites' || state.tab === 'reglages';
+  v.innerHTML = state.tab === 'accueil' ? viewHome() : state.tab === 'paiements' ? viewPays() : state.tab === 'activites' ? viewActs() : viewFamille();
+  hydrate(v);
+}
+function hydrate(root){
+  root.querySelectorAll('img[data-blob]').forEach(img => { if(img.getAttribute('src')) return; B.files.src(img.dataset.blob).then(u => { img.src = u; }).catch(() => { img.alt = 'Fichier introuvable'; }); });
+}
+
+function emptyActs(){
+  return `<div class="empty"><h3>Ajoutez les activités de vos enfants</h3>
+    <p>Football, natation, conservatoire, cours de soutien… Pour chacune, indiquez le tarif et le rythme de paiement. Le suivi des mois réglés et à régler se fait ensuite automatiquement.</p>
+    ${B.canWrite ? '<button class="btn primary" data-act="new-act">Ajouter une activité</button>' : ''}</div>`;
+}
+
+function actCard(a, sy){
+  const st = statusFor(a, sy);
+  const strip = st.items.length ? `<div class="strip">${st.items.map(i => `<span class="chip-m ${i.paid?'paid':i.due?'late':'future'}" title="${esc(i.label)}${i.paid?' — réglé':i.due?' — à régler':''}">${esc(i.court)}</span>`).join('')}</div>` : '';
+  const pill = !st.items.length ? `<span class="pill neutral">${st.n} règlement${st.n>1?'s':''}</span>`
+    : st.unpaid.length ? `<span class="pill due">${st.unpaid.length} à régler</span>`
+    : st.items.some(i => i.due) ? '<span class="pill ok">À jour</span>' : '<span class="pill neutral">Pas encore commencé</span>';
+  return `<div class="act">
+    <div class="act-h"><div class="name"><span class="dot" style="background:${esc(a.couleur||COLORS[0])}"></span>${esc(a.nom)}</div>${pill}</div>
+    <div class="act-meta num">${a.tarif ? fmt(a.tarif)+' '+FREQ_UNIT[a.frequence] : FREQ[a.frequence]||''} · cotisations réglées : <b>${fmt(st.total)}</b>${st.extra ? ` · frais annexes : <b>${fmt(st.extra)}</b>` : ''}</div>
+    ${strip}</div>`;
+}
+
+function viewHome(){
+  if(!acts.length) return emptyActs();
+  const sy = state.season, sp = seasonPays(sy);
+  const total = sp.reduce((s,p) => s + toNum(p.montant), 0);
+  const extra = sp.filter(isExtra).reduce((s,p) => s + toNum(p.montant), 0);
+  const mois = pays.filter(p => (p.date||'').startsWith(thisMonthKey) && payVisible(p)).reduce((s,p) => s + toNum(p.montant), 0);
+  const sansJ = sp.filter(p => !(p.pieces||[]).length);
+  const byPayer = {}; sp.forEach(p => { const k = p.payePar || 'Non précisé'; byPayer[k] = (byPayer[k]||0) + toNum(p.montant); });
+  const shown = activeActs().filter(inKid);
+  const dues = [];
+  shown.forEach(a => statusFor(a, sy).unpaid.forEach(u => dues.push({a, u})));
+  const aRegler = dues.reduce((s,d) => s + toNum(d.a.tarif), 0);
+  const kids = kidsSorted();
+  let cards;
+  if(state.enfant === 'all' && kids.length >= 2){
+    cards = kids.map(k => { const list = shown.filter(a => kidOf(a) === k.id); return list.length ? `<h3 class="kidh"><span class="dot" style="background:${esc(k.couleur||'#3F6FD8')}"></span>${esc(k.prenom)}</h3><div class="acts">${list.map(a => actCard(a, sy)).join('')}</div>` : ''; }).join('');
+  } else cards = `<div class="acts">${shown.map(a => actCard(a, sy)).join('') || '<p class="muted">Aucune activité en cours.</p>'}</div>`;
+  const recent = pays.filter(payVisible).sort((a,b) => (b.date||'').localeCompare(a.date||'') || (b.creeLe||'').localeCompare(a.creeLe||'')).slice(0,4);
+  return `
+  <section class="summary num" aria-label="Résumé de la saison">
+    <div><div class="lab">Réglé ${esc(sLabel(sy))}</div><div class="val">${fmt(total)}</div><div class="sub">${extra ? 'dont '+fmt(extra)+' de frais annexes' : sp.length+' règlement'+(sp.length>1?'s':'')}</div></div>
+    <div><div class="lab">Réglé en ${MOIS_L[today.getMonth()]}</div><div class="val">${fmt(mois)}</div><div class="sub">toutes saisons</div></div>
+    <div><div class="lab">Reste à régler</div><div class="val ${dues.length?'due':''}">${fmt(aRegler)}</div><div class="sub">${dues.length} échéance${dues.length>1?'s':''} passée${dues.length>1?'s':''}</div></div>
+    <div><div class="lab">Sans justificatif</div><div class="val ${sansJ.length?'warn':''}">${sansJ.length}</div><div class="sub">sur ${sp.length}</div></div>
+  </section>
+  ${Object.keys(byPayer).length ? `<div class="split num">${Object.entries(byPayer).map(([k,v]) => `<span>${esc(k)} : <b>${fmt(v)}</b></span>`).join('')}</div>` : ''}
+  ${dues.length ? `<h2 class="sec">À régler <small>échéances passées non réglées</small></h2>
+  <div class="list">${dues.map(({a,u}) => `<div class="row" style="cursor:default">
+    <span class="dot" style="background:${esc(a.couleur||COLORS[0])}"></span>
+    <div class="main"><div class="t">${esc(a.nom)}</div><div class="s">${kids.length>=2 && state.enfant==='all' ? esc((kidById(kidOf(a))||{}).prenom||'')+' · ' : ''}${esc(u.label)}${u.sub?' · '+esc(u.sub):''}</div></div>
+    <span class="amt num">${a.tarif?fmt(a.tarif):''}</span>
+    ${B.canWrite?`<button class="btn btn-sm primary" data-act="pay-for" data-id="${a.id}" data-k="${esc(u.k)}">Régler</button>`:''}
+  </div>`).join('')}</div>` : ''}
+  <h2 class="sec">Activités <small>${esc(sLabel(sy))}</small></h2>
+  ${cards}
+  <h2 class="sec">Derniers règlements ${pays.length>4?'<button class="link" data-tab-go="paiements">Tout voir</button>':''}</h2>
+  ${recent.length ? `<div class="list">${recent.map(payRow).join('')}</div>` : `<div class="empty" style="margin-top:0"><p>Aucun règlement enregistré. Touchez « Règlement » pour saisir le premier, avec la photo du reçu.</p></div>`}`;
+}
+
+function payRow(p){
+  const a = actById(p.activiteId) || {nom:'Activité supprimée', couleur:'#888'};
+  const n = (p.pieces||[]).length, per = periodText(p);
+  const kidName = kidsSorted().length >= 2 && state.enfant === 'all' ? ((kidById(kidOf(a))||{}).prenom || '') : '';
+  return `<button class="row" data-act="show-pay" data-id="${p.id}">
+    <span class="dot" style="background:${esc(a.couleur||COLORS[0])}"></span>
+    <div class="main"><div class="t">${esc(a.nom)}${per?' · <span class="muted" style="font-weight:500">'+esc(per)+'</span>':''}</div>
+      <div class="s">${[kidName, fmtDate(p.date), p.payePar, p.mode].filter(Boolean).map(esc).join(' · ')}</div></div>
+    <div class="end"><span class="amt num">${fmt(p.montant)}</span>
+      <span style="display:flex;gap:4px">${isExtra(p)?'<span class="pill extra">Annexe</span>':''}${n ? `<span class="pill neutral">${ICON_CLIP}${n}</span>` : '<span class="pill warn">Sans justif.</span>'}</span></div>
+  </button>`;
+}
+
+function viewPays(){
+  if(!acts.length) return emptyActs();
+  const sy = state.season, f = state.filter;
+  let list = seasonPays(sy);
+  if(f === 'nojustif') list = list.filter(p => !(p.pieces||[]).length);
+  else if(f === 'annexe') list = list.filter(isExtra);
+  else if(f.startsWith('payeur:')) list = list.filter(p => (p.payePar||'') === f.slice(7));
+  else if(f !== 'all') list = list.filter(p => p.activiteId === f);
+  list.sort((a,b) => (b.date||'').localeCompare(a.date||''));
+  const groups = [];
+  for(const p of list){ const k = (p.date||'').slice(0,7); let g = groups[groups.length-1]; if(!g || g.k !== k){ g = {k, items:[], total:0}; groups.push(g); } g.items.push(p); g.total += toNum(p.montant); }
+  const total = list.reduce((s,p) => s + toNum(p.montant), 0);
+  const o = (v, l) => `<option value="${esc(v)}"${f===v?' selected':''}>${esc(l)}</option>`;
+  const opts = o('all','Tous les règlements') + o('nojustif','Sans justificatif') + o('annexe','Frais annexes')
+    + `<optgroup label="Payé par">${payeurs().map(n => o('payeur:'+n, n)).join('')}</optgroup>`
+    + `<optgroup label="Activité">${acts.filter(inKid).sort((a,b)=>(a.nom||'').localeCompare(b.nom||'','fr')).map(a => o(a.id, a.nom + (a.archive?' (archivée)':''))).join('')}</optgroup>`;
+  return `<div class="bar"><select id="filter" aria-label="Filtrer">${opts}</select>
+    ${B.save ? '<button class="btn btn-sm" data-act="export">Exporter CSV</button>' : ''}</div>
+  <h2 class="sec">Saison ${esc(sLabel(sy))} <small class="num">${list.length} règlement${list.length>1?'s':''} · ${fmt(total)}</small></h2>
+  ${groups.length ? groups.map(g => `<div class="month-h num"><span>${g.k ? MOIS_L[Number(g.k.slice(5))-1]+' '+g.k.slice(0,4) : 'Sans date'}</span><span>${fmt(g.total)}</span></div>
+    <div class="list">${g.items.map(payRow).join('')}</div>`).join('')
+    : '<div class="empty" style="margin-top:0"><p>Aucun règlement pour ce filtre et cette saison.</p></div>'}`;
+}
+
+function viewActs(){
+  if(!acts.length) return emptyActs();
+  const kids = kidsSorted();
+  const sorted = acts.filter(inKid).sort((a,b) => (a.archive?1:0)-(b.archive?1:0) || (a.nom||'').localeCompare(b.nom||'','fr'));
+  return `<h2 class="sec">Activités <small>${sorted.filter(a=>!a.archive).length} en cours</small></h2>
+  <div class="list">${sorted.map(a => {
+    const nb = pays.filter(p => p.activiteId === a.id).length;
+    const range = a.frequence === 'mensuel' ? ` · ${MOIS[(8+(a.debut??0))%12]} → ${MOIS[(8+(a.fin??9))%12]}` : '';
+    const kid = kids.length >= 2 ? ((kidById(kidOf(a))||{}).prenom || '') + ' · ' : '';
+    return `<button class="row" data-act="edit-act" data-id="${a.id}" ${B.canWrite?'':'disabled'}>
+      <span class="dot" style="background:${esc(a.couleur||COLORS[0])}"></span>
+      <div class="main"><div class="t">${esc(a.nom)} ${a.archive?'<span class="pill neutral">Archivée</span>':''}</div>
+      <div class="s">${esc(kid)}${esc(a.lieu?a.lieu+' · ':'')}${FREQ[a.frequence]||''}${range}</div></div>
+      <div class="end"><span class="amt num">${a.tarif?fmt(a.tarif):'—'}</span><span class="hint">${nb} règlement${nb>1?'s':''}</span></div>
+    </button>`; }).join('') || '<div class="row" style="cursor:default"><span class="muted">Aucune activité pour cet enfant.</span></div>'}</div>
+  ${B.canWrite ? '<div class="actions" style="margin-top:14px"><button class="btn primary" data-act="new-act">Ajouter une activité</button></div>' : ''}`;
+}
+
+function viewFamille(){
+  const kids = kidsSorted(), pp = payeurs();
+  return `<h2 class="sec">Enfants <small>${kids.length}</small></h2>
+  <div class="list">${kids.map(k => { const nb = acts.filter(a => kidOf(a) === k.id && !a.archive).length;
+    return `<button class="row" data-act="edit-kid" data-id="${k.id}" ${B.canWrite?'':'disabled'}><span class="dot" style="background:${esc(k.couleur||'#3F6FD8')}"></span>
+      <div class="main"><div class="t">${esc(k.prenom)}</div><div class="s">${nb} activité${nb>1?'s':''} en cours</div></div></button>`; }).join('')
+    || '<div class="row" style="cursor:default"><span class="muted">Ajoutez vos enfants pour classer leurs activités séparément. Avec un seul enfant, c\'est facultatif.</span></div>'}</div>
+  ${B.canWrite ? '<div class="actions" style="margin-top:12px"><button class="btn" data-act="new-kid">Ajouter un enfant</button></div>' : ''}
+
+  <h2 class="sec">Qui paie <small>proposé à chaque règlement</small></h2>
+  <div class="card"><div class="two">
+    <div class="field"><label for="payeur-0">Payeur 1</label><input type="text" id="payeur-0" value="${esc(pp[0]||'')}" ${B.canWrite?'':'disabled'}></div>
+    <div class="field"><label for="payeur-1">Payeur 2</label><input type="text" id="payeur-1" value="${esc(pp[1]||'')}" ${B.canWrite?'':'disabled'}></div>
+  </div><span class="hint">Mettez vos prénoms, par exemple. Les règlements déjà saisis gardent l’ancien nom.</span></div>
+
+  <h2 class="sec">Sauvegarde <small>${IS_APP ? 'données stockées sur ce téléphone' : 'données stockées dans votre compte Claude'}</small></h2>
+  <div class="card">
+    <p class="muted" style="font-size:14px">${IS_APP ? 'Vos données restent sur ce téléphone. Exportez régulièrement une sauvegarde (justificatifs compris) vers Google Drive, WhatsApp ou vos e-mails : elle se réimporte ici ou dans la version web.' : 'La sauvegarde contient tous les règlements et justificatifs. Elle permet de transférer vos données vers l’application Android, et inversement.'}</p>
+    <div class="actions" style="justify-content:flex-start">
+      ${B.save ? '<button class="btn" data-act="backup">Exporter une sauvegarde</button>' : ''}
+      ${B.canWrite && B.files.canUpload ? '<button class="btn" data-act="restore">Importer une sauvegarde</button>' : ''}
+    </div>
+  </div>
+  <p class="hint" style="margin-top:18px;text-align:center">Version ${APP_VERSION} · ${IS_APP ? 'application Android' : 'version web'}</p>`;
+}
+
+/* ============ sheet & viewer ============ */
+function openSheet(html){ $('#sheet-body').innerHTML = html; $('#sheet').hidden = false; document.body.style.overflow = 'hidden'; hydrate($('#sheet-body')); }
+function closeSheet(){
+  if(F && F.kind === 'pay' && F.nouveaux.length) F.nouveaux.forEach(id => B.files.del(id));
+  F = null; $('#sheet').hidden = true; $('#sheet-body').innerHTML = ''; document.body.style.overflow = '';
+}
+let viewing = null;
+async function openPiece(x){
+  if(!x || x.tmp) return;
+  if(/^image\//.test(x.type)){
+    viewing = x; const img = $('#v-img'); img.removeAttribute('src');
+    $('#viewer').hidden = false; $('#v-save').hidden = !B.save;
+    try{ img.src = await B.files.src(x.id); }catch{ toast('Justificatif introuvable.'); }
+  } else {
+    try{ await B.files.openPdf(x); }catch{ toast('Impossible d’ouvrir ce PDF.'); }
+  }
+}
+function closeViewer(){ $('#viewer').hidden = true; viewing = null; }
+async function savePiece(x){
+  if(!B.save || !x) return;
+  try{ const b = await B.files.blob(x.id); await B.save(x.nom || ('justificatif.'+(EXT[x.type]||'pdf')), b); }
+  catch(e){ if(!e || e.code !== 'declined') toast('Enregistrement impossible.'); }
+}
+let toastT;
+function toast(msg){ const t = $('#toast'); t.textContent = msg; t.hidden = false; clearTimeout(toastT); toastT = setTimeout(() => { t.hidden = true; }, 3400); }
+
+/* ============ payment form ============ */
+function lastPayer(){ const p = [...pays].sort((a,b) => (b.creeLe||'').localeCompare(a.creeLe||''))[0]; return p && p.payePar && payeurs().includes(p.payePar) ? p.payePar : payeurs()[0]; }
+function openPayForm(p, preset){
+  const pool = activeActs().filter(inKid);
+  const a0 = p ? actById(p.activiteId) : actById(preset && preset.actId) || pool[0] || activeActs()[0];
+  const sy = p ? Number((p.saison||'').slice(0,4)) || curSeason : state.season;
+  F = {kind:'pay', id:p ? p.id : null, creeLe:p && p.creeLe, type:p && isExtra(p) ? 'annexe' : (preset && preset.type) || 'cotisation',
+       activiteId:a0 ? a0.id : '', date:p ? p.date : todayKey, saison:sy,
+       periodes:new Set(p && p.periodes || []), montant:p ? String(p.montant).replace('.',',') : '', touched:!!p,
+       categorie:p && p.categorie || CATS[0], libelle:p && p.libelle || '',
+       payePar:p ? (p.payePar || '') : lastPayer(), mode:p && p.mode || 'Espèces',
+       reference:p && p.reference || '', note:p && p.note || '',
+       pieces:(p && p.pieces || []).map(x => ({...x})), nouveaux:[], retires:[], ocrBusy:false, ocrDone:false};
+  if(!p && F.type === 'cotisation'){
+    if(preset && preset.k) F.periodes.add(preset.k);
+    else if(a0){ const st = statusFor(a0, sy); const first = st.unpaid[0] || st.items.find(i => !i.paid); if(first) F.periodes.add(first.k); }
+    autoAmount();
+  }
+  renderPayForm();
+}
+function autoAmount(){
+  if(F.touched || F.type === 'annexe') return;
+  const a = actById(F.activiteId); if(!a || !a.tarif) return;
+  const n = a.frequence === 'ponctuel' ? 1 : F.periodes.size;
+  F.montant = n ? String(Math.round(toNum(a.tarif)*n*1000)/1000).replace('.',',') : '';
+}
+function actOptions(selectedId, includeId){
+  const kids = kidsSorted();
+  let list = activeActs(); const inc = actById(includeId); if(inc && inc.archive) list = [...list, inc];
+  const opt = x => `<option value="${x.id}"${x.id===selectedId?' selected':''}>${esc(x.nom)}</option>`;
+  if(kids.length < 2) return list.map(opt).join('');
+  return kids.map(k => { const l = list.filter(a => kidOf(a) === k.id); return l.length ? `<optgroup label="${esc(k.prenom)}">${l.map(opt).join('')}</optgroup>` : ''; }).join('');
+}
+function renderPayForm(){
+  const f = F, a = actById(f.activiteId), annexe = f.type === 'annexe';
+  const st = a && !annexe ? statusFor(a, f.saison) : {items:[]};
+  const seasons = [curSeason-1, curSeason, curSeason+1]; if(!seasons.includes(f.saison)) seasons.push(f.saison);
+  const pp = payeurs(); if(f.payePar && !pp.includes(f.payePar)) pp.push(f.payePar);
+  const perHtml = st.items.length ? `<div class="field"><span class="lab">Période(s) réglée(s)</span>
+      <div class="chips" role="group">${st.items.map(i => `<button type="button" class="chip ${i.paid && !f.periodes.has(i.k) ? 'is-paid':''}" aria-pressed="${f.periodes.has(i.k)}" data-per="${esc(i.k)}" title="${i.paid?'Déjà réglé':''}">${esc(i.label)}</button>`).join('')}</div>
+      <span class="hint">Plusieurs mois réglés en une fois : sélectionnez-les tous. Les périodes en pointillé sont déjà réglées.</span></div>` : '';
+  const hasImg = f.pieces.some(x => !x.tmp && /^image\//.test(x.type));
+  const ocrHtml = B.ocr && hasImg ? `<div class="ocr">${f.ocrBusy ? '<div class="spin"></div><p>Lecture du reçu en cours…</p>'
+      : `<p>${f.ocrDone ? 'Reçu lu. Vérifiez le montant et la date ci-dessus.' : 'Remplir automatiquement le montant, la date et le n° de reçu à partir de la photo.'}</p><button type="button" class="btn btn-sm primary" id="pf-ocr">${ICON_SCAN}${f.ocrDone ? 'Relire' : 'Lire le reçu'}</button>`}</div>` : '';
+  const piecesHtml = f.pieces.map((x,i) => `<div class="piece" data-pidx="${i}">${x.tmp ? '<div class="spin"></div>' : /^image\//.test(x.type) ? `<img data-blob="${esc(x.id)}" src="${esc(B.files.srcSync(x.id))}" alt="${esc(x.nom)}">` : `<div class="pdf"><b>PDF</b>${esc((x.nom||'').slice(0,28))}</div>`}
+      ${x.tmp ? '' : `<button type="button" class="rm" data-rm="${i}" aria-label="Retirer ${esc(x.nom)}">×</button>`}</div>`).join('');
+  openSheet(`<h3>${f.id ? 'Modifier le règlement' : 'Nouveau règlement'}<button class="x" data-act="close" aria-label="Fermer">×</button></h3>
+  <form class="form" id="pay-form" novalidate>
+    <div class="seg" role="group" aria-label="Type de règlement">
+      <button type="button" data-type="cotisation" aria-pressed="${!annexe}">Cotisation</button>
+      <button type="button" data-type="annexe" aria-pressed="${annexe}">Frais annexe</button>
+    </div>
+    <div class="field"><label for="pf-act">Activité</label><select id="pf-act">${actOptions(f.activiteId, f.activiteId)}</select></div>
+    ${annexe ? `<div class="two">
+      <div class="field"><label for="pf-cat">Nature</label><select id="pf-cat">${CATS.map(c => `<option${c===f.categorie?' selected':''}>${c}</option>`).join('')}</select></div>
+      <div class="field"><label for="pf-lib">Détail <span class="muted" style="font-weight:400">(facultatif)</span></label><input type="text" id="pf-lib" value="${esc(f.libelle)}" placeholder="Ex. maillot + short"></div></div>` : ''}
+    <div class="two">
+      <div class="field"><label for="pf-date">Date du paiement</label><input type="date" id="pf-date" value="${esc(f.date)}"></div>
+      <div class="field"><label for="pf-season">Saison</label><select id="pf-season">${seasons.sort().map(s => `<option value="${s}"${s===f.saison?' selected':''}>${sLabel(s)}</option>`).join('')}</select></div>
+    </div>
+    ${perHtml}
+    <div class="two">
+      <div class="field"><label for="pf-amt">Montant</label><div class="amount-in"><input id="pf-amt" type="text" inputmode="decimal" value="${esc(f.montant)}" placeholder="0" autocomplete="off"><span>DT</span></div></div>
+      <div class="field"><label for="pf-mode">Mode</label><select id="pf-mode">${MODES.map(m => `<option${m===f.mode?' selected':''}>${m}</option>`).join('')}</select></div>
+    </div>
+    <div class="field"><span class="lab">Payé par</span><div class="chips" role="group">${pp.map(n => `<button type="button" class="chip" data-payer="${esc(n)}" aria-pressed="${n===f.payePar}">${esc(n)}</button>`).join('')}</div></div>
+    <div class="field"><label for="pf-ref">N° de reçu ou de chèque <span class="muted" style="font-weight:400">(facultatif)</span></label><input type="text" id="pf-ref" value="${esc(f.reference)}"></div>
+    <div class="field"><span class="lab">Justificatifs</span>
+      <div class="pieces">${piecesHtml}
+        ${B.files.canUpload ? `<label class="add-piece" for="pf-cam"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>Prendre une photo</label>
+        <label class="add-piece" for="pf-file"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/><path d="M14 3v5h5M12 17v-6M9 14l3-3 3 3"/></svg>Photo ou PDF existant</label>` : ''}
+      </div>
+      <input type="file" id="pf-cam" accept="image/*" capture="environment" hidden>
+      <input type="file" id="pf-file" accept="image/jpeg,image/png,image/webp,application/pdf" multiple hidden>
+      ${ocrHtml}
+      ${B.files.canUpload ? '<span class="hint">Photographiez le reçu ou choisissez une photo ou un PDF déjà enregistré. Les photos sont allégées automatiquement.</span>' : '<span class="hint">L’ajout de justificatifs n’est pas disponible dans cette vue.</span>'}
+    </div>
+    <div class="field"><label for="pf-note">Note <span class="muted" style="font-weight:400">(facultatif)</span></label><textarea id="pf-note">${esc(f.note)}</textarea></div>
+    <div class="actions"><button type="button" class="btn" data-act="close">Annuler</button><button type="submit" class="btn primary" id="pf-save">Enregistrer</button></div>
+  </form>`);
+  $$('[data-type]').forEach(b => b.onclick = () => { if(F.type === b.dataset.type) return; F.type = b.dataset.type; if(F.type === 'annexe'){ F.periodes = new Set(); if(!F.touched) F.montant = ''; } else { F.touched = false; const a = actById(F.activiteId); const st = statusFor(a, F.saison); const first = st.unpaid[0] || st.items.find(i => !i.paid); if(first) F.periodes.add(first.k); autoAmount(); } renderPayForm(); });
+  $('#pf-act').onchange = e => { F.activiteId = e.target.value; if(F.type === 'cotisation'){ F.periodes = new Set(); F.touched = false; const st = statusFor(actById(F.activiteId), F.saison); const first = st.unpaid[0] || st.items.find(i => !i.paid); if(first) F.periodes.add(first.k); autoAmount(); } renderPayForm(); };
+  $('#pf-season').onchange = e => { F.saison = Number(e.target.value); F.periodes = new Set(); autoAmount(); renderPayForm(); };
+  $('#pf-date').oninput = e => { F.date = e.target.value; };
+  $('#pf-amt').oninput = e => { F.montant = e.target.value; F.touched = true; };
+  $('#pf-mode').onchange = e => { F.mode = e.target.value; };
+  $('#pf-ref').oninput = e => { F.reference = e.target.value; };
+  $('#pf-note').oninput = e => { F.note = e.target.value; };
+  if($('#pf-cat')) $('#pf-cat').onchange = e => { F.categorie = e.target.value; };
+  if($('#pf-lib')) $('#pf-lib').oninput = e => { F.libelle = e.target.value; };
+  if($('#pf-ocr')) $('#pf-ocr').onclick = () => runOcr();
+  $('#pf-file').onchange = e => { const files = [...e.target.files]; e.target.value = ''; addFiles(files); };
+  $('#pf-cam').onchange = e => { const files = [...e.target.files]; e.target.value = ''; addFiles(files); };
+  $('#pay-form').onsubmit = e => { e.preventDefault(); savePay(); };
+  $$('[data-payer]').forEach(b => b.onclick = () => { F.payePar = F.payePar === b.dataset.payer ? '' : b.dataset.payer; renderPayForm(); });
+  $$('[data-per]').forEach(b => b.onclick = () => { const k = b.dataset.per; if(F.periodes.has(k)) F.periodes.delete(k); else F.periodes.add(k); autoAmount(); renderPayForm(); });
+  $$('#pay-form [data-pidx]').forEach(el => el.onclick = ev => { if(ev.target.closest('.rm')) return; openPiece(F.pieces[Number(el.dataset.pidx)]); });
+  $$('[data-rm]').forEach(b => b.onclick = ev => {
+    ev.stopPropagation();
+    const x = F.pieces.splice(Number(b.dataset.rm), 1)[0];
+    if(F.nouveaux.includes(x.id)){ F.nouveaux = F.nouveaux.filter(i => i !== x.id); B.files.del(x.id); } else F.retires.push(x.id);
+    renderPayForm();
+  });
+}
+
+async function shrink(file){
+  if(!/^image\/(jpeg|png|webp)$/.test(file.type) || file.size < 700*1024) return {blob:file, type:file.type};
+  const url = URL.createObjectURL(file);
+  try{
+    const img = await new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = url; });
+    const s = Math.min(1, 2000/Math.max(img.naturalWidth, img.naturalHeight));
+    const c = document.createElement('canvas'); c.width = Math.round(img.naturalWidth*s); c.height = Math.round(img.naturalHeight*s);
+    const ctx = c.getContext('2d'); ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, c.width, c.height); ctx.drawImage(img, 0, 0, c.width, c.height);
+    const b = await new Promise(r => c.toBlob(r, 'image/jpeg', 0.82));
+    return b && b.size < file.size ? {blob:b, type:'image/jpeg'} : {blob:file, type:file.type};
+  }catch{ return {blob:file, type:file.type}; }
+  finally{ URL.revokeObjectURL(url); }
+}
+async function addFiles(files){
+  if(!B.files.canUpload) return;
+  const f = F; let firstImage = false;
+  for(const file of files){
+    const type = file.type || (/\.pdf$/i.test(file.name) ? 'application/pdf' : /\.jpe?g$/i.test(file.name) ? 'image/jpeg' : /\.png$/i.test(file.name) ? 'image/png' : '');
+    if(!EXT[type]){ toast('Format non pris en charge : choisissez une photo JPG ou PNG, ou un PDF.'); continue; }
+    const tmp = {tmp:true, nom:file.name, type};
+    f.pieces.push(tmp); if(F === f) renderPayForm();
+    try{
+      const {blob, type:t2} = await shrink(type === file.type ? file : new Blob([file], {type}));
+      const r = await B.files.upload(blob, t2);
+      if(F !== f){ B.files.del(r.id); return; }
+      const base = (file.name || 'justificatif').replace(/\.[^.]+$/, '').slice(0, 80);
+      Object.assign(tmp, {tmp:false, id:r.id, type:r.type, nom:base + '.' + (EXT[r.type] || 'bin'), _blob:blob});
+      f.nouveaux.push(r.id);
+      if(/^image\//.test(r.type)) firstImage = true;
+    }catch(e){
+      f.pieces.splice(f.pieces.indexOf(tmp), 1);
+      const c = e && e.code;
+      toast(c === 'too_large' ? 'Fichier trop lourd (20 Mo maximum).' : c === 'quota_or_state' ? 'Espace de stockage plein : supprimez d’anciens justificatifs.' : c === 'unsupported_type' ? 'Format non pris en charge.' : 'L’envoi a échoué. Réessayez.');
+    }
+    if(F === f) renderPayForm();
+  }
+  if(F === f && firstImage && B.ocr && B.ocrAuto && !f.touched && !f.ocrDone) runOcr();
+}
+async function runOcr(){
+  const f = F; if(!f || f.ocrBusy || !B.ocr) return;
+  const x = f.pieces.find(p => !p.tmp && /^image\//.test(p.type)); if(!x) return;
+  f.ocrBusy = true; renderPayForm();
+  let r = null, err = null;
+  try{ const blob = x._blob || await B.files.blob(x.id); r = await B.ocr(blob); }catch(e){ err = e; }
+  if(F !== f) return;
+  f.ocrBusy = false;
+  if(err || !r){
+    const c = err && err.code;
+    if(c !== 'cancelled') toast(c === 'not_granted' ? 'Lecture automatique non autorisée.' : c === 'rate_limited' ? 'Trop de demandes : réessayez dans un moment.' : 'Lecture du reçu impossible. Saisissez les valeurs à la main.');
+    renderPayForm(); return;
+  }
+  let n = 0;
+  const m = Number(r.montant); if(m > 0){ f.montant = String(Math.round(m*1000)/1000).replace('.', ','); f.touched = true; n++; }
+  if(/^\d{4}-\d{2}-\d{2}$/.test(r.date || '')){ f.date = r.date; n++; }
+  if(r.reference && !f.reference){ f.reference = String(r.reference).slice(0, 60); n++; }
+  if(r.libelle && f.type === 'annexe' && !f.libelle){ f.libelle = String(r.libelle).slice(0, 80); n++; }
+  if(Array.isArray(r.mois) && r.mois.length && f.type === 'cotisation'){
+    const a = actById(f.activiteId);
+    if(a && a.frequence === 'mensuel'){ const ks = periodsFor(a, f.saison).map(p => p.k); const hit = r.mois.filter(k => ks.includes(k)); if(hit.length){ f.periodes = new Set(hit); n++; } }
+  }
+  f.ocrDone = true; renderPayForm();
+  toast(n ? 'Reçu lu : vérifiez les valeurs remplies.' : 'Rien d’exploitable trouvé sur ce reçu.');
+}
+
+async function savePay(){
+  const f = F; if(!f) return;
+  const a = actById(f.activiteId), montant = toNum(f.montant), annexe = f.type === 'annexe';
+  if(!a){ toast('Choisissez une activité.'); return; }
+  if(!(montant > 0)){ toast('Indiquez le montant réglé.'); const el = $('#pf-amt'); if(el) el.focus(); return; }
+  if(!f.date){ toast('Indiquez la date du paiement.'); return; }
+  if(f.pieces.some(x => x.tmp)){ toast('Envoi du justificatif en cours, patientez un instant.'); return; }
+  const order = periodsFor(a, f.saison).map(p => p.k), now = new Date().toISOString();
+  const body = {type:f.type, activiteId:a.id, date:f.date, saison:sLabel(f.saison), periodes:annexe ? [] : order.filter(k => f.periodes.has(k)),
+    categorie:annexe ? f.categorie : '', libelle:annexe ? f.libelle.trim() : '',
+    montant, payePar:f.payePar || '', mode:f.mode, reference:f.reference.trim(), note:f.note.trim(),
+    pieces:f.pieces.map(({id, nom, type}) => ({id, nom, type})), creeLe:f.creeLe || now, modifieLe:now};
+  const btn = $('#pf-save'); btn.disabled = true; btn.textContent = 'Enregistrement…';
+  try{
+    if(f.id) await B.set('paiements', f.id, body); else await B.add('paiements', body);
+    f.retires.forEach(id => B.files.del(id));
+    f.nouveaux = []; closeSheet(); toast('Règlement enregistré');
+  }catch(e){ btn.disabled = false; btn.textContent = 'Enregistrer'; toast(e && e.code === 'quota_exceeded' ? 'Stockage plein : impossible d’enregistrer.' : 'Enregistrement impossible. Réessayez.'); }
+}
+
+function showPay(id){
+  const p = pays.find(x => x.id === id); if(!p){ closeSheet(); return; }
+  const a = actById(p.activiteId) || {nom:'Activité supprimée', couleur:'#888'};
+  const kid = kidById(kidOf(a));
+  F = {kind:'view', id};
+  const pcs = p.pieces || [];
+  openSheet(`<h3><span style="display:flex;align-items:center;gap:8px;min-width:0"><span class="dot" style="background:${esc(a.couleur)}"></span>${esc(a.nom)}</span><button class="x" data-act="close" aria-label="Fermer">×</button></h3>
+  <div class="detail"><div class="big num">${fmt(p.montant)}</div>
+    <dl class="kv">
+    ${kid && kidsSorted().length >= 2 ? `<dt>Enfant</dt><dd>${esc(kid.prenom)}</dd>` : ''}
+    <dt>Type</dt><dd>${isExtra(p) ? 'Frais annexe' + (p.categorie ? ' · '+esc(p.categorie) : '') + (p.libelle ? ' · '+esc(p.libelle) : '') : 'Cotisation'}</dd>
+    <dt>Date</dt><dd>${fmtDate(p.date)}</dd>
+    ${!isExtra(p) && periodText(p) ? `<dt>Période</dt><dd>${esc(periodText(p))} (${esc(p.saison)})</dd>` : `<dt>Saison</dt><dd>${esc(p.saison)}</dd>`}
+    ${p.payePar ? `<dt>Payé par</dt><dd>${esc(p.payePar)}</dd>` : ''}
+    <dt>Mode</dt><dd>${esc(p.mode)}</dd>
+    ${p.reference ? `<dt>Référence</dt><dd>${esc(p.reference)}</dd>` : ''}
+    ${p.note ? `<dt>Note</dt><dd>${esc(p.note)}</dd>` : ''}</dl></div>
+  <h2 class="sec" style="margin-top:18px">Justificatifs <small>${pcs.length}</small></h2>
+  ${pcs.length ? `<div class="pieces">${pcs.map((x,i) => `<div style="display:grid;gap:4px"><button class="piece" data-open="${i}" aria-label="Ouvrir ${esc(x.nom)}">${/^image\//.test(x.type) ? `<img data-blob="${esc(x.id)}" src="${esc(B.files.srcSync(x.id))}" alt="${esc(x.nom)}">` : `<div class="pdf"><b>PDF</b>${esc((x.nom||'').slice(0,28))}</div>`}</button>
+      ${B.save ? `<button class="link" style="font-size:12px" data-dl="${i}">${IS_APP ? 'Partager' : 'Télécharger'}</button>` : ''}</div>`).join('')}</div>`
+    : '<p class="pill warn">Aucun justificatif. Modifiez le règlement pour en ajouter un.</p>'}
+  ${B.canWrite ? `<div class="actions" style="margin-top:20px"><button class="btn danger grow" id="del-pay">Supprimer</button><button class="btn primary" data-act="edit-pay" data-id="${p.id}">Modifier</button></div>` : ''}`);
+  $$('[data-open]').forEach(b => b.onclick = () => openPiece(pcs[Number(b.dataset.open)]));
+  $$('[data-dl]').forEach(b => b.onclick = () => savePiece(pcs[Number(b.dataset.dl)]));
+  const del = $('#del-pay');
+  if(del) del.onclick = async () => {
+    if(!del.classList.contains('armed')){ del.classList.add('armed'); del.textContent = 'Confirmer la suppression'; return; }
+    del.disabled = true;
+    try{ await B.del('paiements', p.id); pcs.forEach(x => B.files.del(x.id)); closeSheet(); toast('Règlement supprimé'); }
+    catch{ del.disabled = false; toast('Suppression impossible. Réessayez.'); }
+  };
+}
+
+/* ============ activity form ============ */
+function openActForm(a){
+  const kids = kidsSorted();
+  F = {kind:'act', id:a ? a.id : null, creeLe:a && a.creeLe, nom:a && a.nom || '', lieu:a && a.lieu || '',
+       tarif:a && a.tarif != null ? String(a.tarif).replace('.', ',') : '', frequence:a && a.frequence || 'mensuel',
+       debut:a ? (a.debut ?? 0) : 0, fin:a ? (a.fin ?? 9) : 9, couleur:a && a.couleur || COLORS[acts.length % COLORS.length], archive:!!(a && a.archive),
+       enfantId:a ? kidOf(a) : (state.enfant !== 'all' ? state.enfant : (kids[0] ? kids[0].id : null))};
+  renderActForm();
+}
+function renderActForm(){
+  const f = F, nb = f.id ? pays.filter(p => p.activiteId === f.id).length : 0, kids = kidsSorted();
+  const mOpts = sel => Array.from({length:12}, (_,i) => `<option value="${i}"${i===sel?' selected':''}>${MOIS_L[(8+i)%12]}</option>`).join('');
+  const unit = {mensuel:'Tarif mensuel', trimestriel:'Tarif par trimestre', annuel:'Tarif de la saison', ponctuel:'Tarif habituel'}[f.frequence];
+  openSheet(`<h3>${f.id ? 'Modifier l’activité' : 'Nouvelle activité'}<button class="x" data-act="close" aria-label="Fermer">×</button></h3>
+  <form class="form" id="act-form" novalidate>
+    ${kids.length ? `<div class="field"><span class="lab">Enfant</span><div class="chips">${kids.map(k => `<button type="button" class="chip" data-akid="${k.id}" aria-pressed="${k.id===f.enfantId}">${esc(k.prenom)}</button>`).join('')}</div></div>` : ''}
+    <div class="field"><label for="af-nom">Nom de l’activité</label><input type="text" id="af-nom" value="${esc(f.nom)}" placeholder="Ex. Natation, Football, Piano"></div>
+    <div class="field"><label for="af-lieu">Club ou lieu <span class="muted" style="font-weight:400">(facultatif)</span></label><input type="text" id="af-lieu" value="${esc(f.lieu)}"></div>
+    <div class="two">
+      <div class="field"><label for="af-freq">Rythme de paiement</label><select id="af-freq">${Object.entries(FREQ).map(([k,v]) => `<option value="${k}"${k===f.frequence?' selected':''}>${v}</option>`).join('')}</select></div>
+      <div class="field"><label for="af-tarif">${unit}</label><div class="amount-in"><input id="af-tarif" type="text" inputmode="decimal" value="${esc(f.tarif)}" placeholder="0"><span>DT</span></div></div>
+    </div>
+    ${f.frequence === 'mensuel' ? `<div class="two">
+      <div class="field"><label for="af-deb">Premier mois payé</label><select id="af-deb">${mOpts(f.debut)}</select></div>
+      <div class="field"><label for="af-fin">Dernier mois payé</label><select id="af-fin">${mOpts(f.fin)}</select></div></div>` : ''}
+    ${f.frequence === 'annuel' ? `<div class="field"><label for="af-deb">Paiement attendu en</label><select id="af-deb">${mOpts(f.debut)}</select></div>` : ''}
+    ${f.frequence === 'trimestriel' ? '<p class="hint">Trimestres scolaires : septembre–décembre, janvier–mars, avril–juin.</p>' : ''}
+    <div class="field"><span class="lab">Couleur</span><div class="swatches">${COLORS.map(c => `<button type="button" class="sw" style="background:${c}" aria-pressed="${c===f.couleur}" data-col="${c}" aria-label="Couleur ${c}"></button>`).join('')}</div></div>
+    ${f.id ? `<label style="display:flex;gap:10px;align-items:center;font-weight:600"><input type="checkbox" id="af-arch" ${f.archive?'checked':''} style="width:20px;height:20px"> Activité terminée (archiver)</label>` : ''}
+    <div class="actions">
+      ${f.id ? (nb ? `<span class="hint grow">${nb} règlement${nb>1?'s':''} lié${nb>1?'s':''} : archivez plutôt que supprimer.</span>` : '<button type="button" class="btn danger grow" id="af-del">Supprimer</button>') : ''}
+      <button type="button" class="btn" data-act="close">Annuler</button><button type="submit" class="btn primary">Enregistrer</button></div>
+  </form>`);
+  $('#af-nom').oninput = e => { F.nom = e.target.value; };
+  $('#af-lieu').oninput = e => { F.lieu = e.target.value; };
+  $('#af-tarif').oninput = e => { F.tarif = e.target.value; };
+  $('#af-freq').onchange = e => { F.frequence = e.target.value; renderActForm(); };
+  if($('#af-deb')) $('#af-deb').onchange = e => { F.debut = Number(e.target.value); if(F.fin < F.debut) F.fin = F.debut; if(F.frequence === 'mensuel') renderActForm(); };
+  if($('#af-fin')) $('#af-fin').onchange = e => { F.fin = Number(e.target.value); if(F.fin < F.debut) F.debut = F.fin; renderActForm(); };
+  if($('#af-arch')) $('#af-arch').onchange = e => { F.archive = e.target.checked; };
+  $$('[data-col]').forEach(b => b.onclick = () => { F.couleur = b.dataset.col; renderActForm(); });
+  $$('[data-akid]').forEach(b => b.onclick = () => { F.enfantId = b.dataset.akid; renderActForm(); });
+  const del = $('#af-del');
+  if(del) del.onclick = async () => {
+    if(!del.classList.contains('armed')){ del.classList.add('armed'); del.textContent = 'Confirmer'; return; }
+    try{ await B.del('activites', F.id); closeSheet(); toast('Activité supprimée'); }catch{ toast('Suppression impossible.'); }
+  };
+  $('#act-form').onsubmit = async e => {
+    e.preventDefault();
+    const f = F, nom = f.nom.trim();
+    if(!nom){ toast('Donnez un nom à l’activité.'); $('#af-nom').focus(); return; }
+    const now = new Date().toISOString();
+    const body = {nom, lieu:f.lieu.trim(), tarif:toNum(f.tarif), frequence:f.frequence, debut:f.debut, fin:f.fin, couleur:f.couleur, archive:f.archive, enfantId:f.enfantId || '', creeLe:f.creeLe || now, modifieLe:now};
+    try{
+      if(f.id) await B.set('activites', f.id, body); else await B.add('activites', body);
+      closeSheet(); toast('Activité enregistrée');
+    }catch{ toast('Enregistrement impossible. Réessayez.'); }
+  };
+}
+
+/* ============ child form ============ */
+const KID_COLORS = ['#3F6FD8','#C8553D','#0E8A74','#9B5DE5','#D69E2E','#2B9EB3'];
+function openKidForm(k){
+  F = {kind:'kid', id:k ? k.id : null, creeLe:k && k.creeLe, prenom:k && k.prenom || '', couleur:k && k.couleur || KID_COLORS[enfants.length % KID_COLORS.length]};
+  renderKidForm();
+}
+function renderKidForm(){
+  const f = F;
+  const nb = f.id ? acts.filter(a => kidOf(a) === f.id).length : 0;
+  const isFirst = f.id && kidsSorted()[0] && kidsSorted()[0].id === f.id;
+  const orphans = acts.filter(a => !a.enfantId || !kidById(a.enfantId)).length;
+  openSheet(`<h3>${f.id ? 'Modifier l’enfant' : 'Ajouter un enfant'}<button class="x" data-act="close" aria-label="Fermer">×</button></h3>
+  <form class="form" id="kid-form" novalidate>
+    <div class="field"><label for="kf-prenom">Prénom</label><input type="text" id="kf-prenom" value="${esc(f.prenom)}" autocomplete="off"></div>
+    <div class="field"><span class="lab">Couleur</span><div class="swatches">${KID_COLORS.map(c => `<button type="button" class="sw" style="background:${c}" aria-pressed="${c===f.couleur}" data-kcol="${c}" aria-label="Couleur ${c}"></button>`).join('')}</div></div>
+    ${!f.id && !enfants.length && orphans ? `<p class="hint">Les ${orphans} activité${orphans>1?'s':''} déjà saisie${orphans>1?'s':''} seront rattachée${orphans>1?'s':''} à cet enfant. Vous pourrez les réaffecter ensuite.</p>` : ''}
+    <div class="actions">
+      ${f.id ? (nb && !(isFirst && enfants.length === 1) ? `<span class="hint grow">${nb} activité${nb>1?'s':''} rattachée${nb>1?'s':''}.</span>` : '<button type="button" class="btn danger grow" id="kf-del">Supprimer</button>') : ''}
+      <button type="button" class="btn" data-act="close">Annuler</button><button type="submit" class="btn primary">Enregistrer</button></div>
+  </form>`);
+  $('#kf-prenom').oninput = e => { F.prenom = e.target.value; };
+  $$('[data-kcol]').forEach(b => b.onclick = () => { F.couleur = b.dataset.kcol; renderKidForm(); });
+  const del = $('#kf-del');
+  if(del) del.onclick = async () => {
+    if(!del.classList.contains('armed')){ del.classList.add('armed'); del.textContent = 'Confirmer'; return; }
+    try{ await B.del('enfants', F.id); closeSheet(); toast('Enfant supprimé'); }catch{ toast('Suppression impossible.'); }
+  };
+  $('#kid-form').onsubmit = async e => {
+    e.preventDefault();
+    const f = F, prenom = f.prenom.trim();
+    if(!prenom){ toast('Indiquez le prénom.'); $('#kf-prenom').focus(); return; }
+    const now = new Date().toISOString();
+    try{
+      const first = !enfants.length;
+      let id = f.id;
+      if(id) await B.set('enfants', id, {prenom, couleur:f.couleur, creeLe:f.creeLe || now});
+      else id = await B.add('enfants', {prenom, couleur:f.couleur, creeLe:now});
+      if(first){ for(const a of acts.filter(a => !a.enfantId)) await B.set('activites', a.id, {...withoutId(a), enfantId:id}); }
+      closeSheet(); toast('Enfant enregistré');
+    }catch{ toast('Enregistrement impossible. Réessayez.'); }
+  };
+}
+
+let payerT;
+function savePayers(){
+  clearTimeout(payerT);
+  payerT = setTimeout(async () => {
+    const v = [0,1].map(i => { const el = $('#payeur-'+i); return el ? el.value.trim() : ''; }).filter(Boolean);
+    if(!v.length) return;
+    if(JSON.stringify(v) === JSON.stringify(payeurs())) return;
+    try{ await B.set('reglages', 'general', {...withoutId(reglages), payeurs:v}); toast('Payeurs enregistrés'); }catch{ toast('Enregistrement impossible.'); }
+  }, 700);
+}
+
+/* ============ export / backup ============ */
+async function exportCsv(){
+  const sy = state.season;
+  const rows = seasonPays(sy).sort((a,b) => (a.date||'').localeCompare(b.date||''));
+  if(!rows.length){ toast('Aucun règlement à exporter pour cette saison.'); return; }
+  const cell = v => { const s = String(v ?? ''); return /[;"\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
+  const lines = [['Date','Enfant','Activité','Type','Détail / période(s)','Montant (DT)','Payé par','Mode','Référence','Note','Justificatifs']]
+    .concat(rows.map(p => { const a = actById(p.activiteId) || {}; return [p.date, (kidById(kidOf(a))||{}).prenom || '', a.nom || '', isExtra(p) ? 'Frais annexe' : 'Cotisation', periodText(p), String(toNum(p.montant)).replace('.', ','), p.payePar, p.mode, p.reference, p.note, (p.pieces||[]).length]; }))
+    .map(r => r.map(cell).join(';'));
+  try{ await B.save(`reglements-activites-${sLabel(sy)}.csv`, '﻿' + lines.join('\r\n')); }
+  catch(e){ if(!e || e.code !== 'declined') toast('Export impossible dans cette vue.'); }
+}
+async function exportBackup(){
+  toast('Préparation de la sauvegarde…');
+  const fichiers = {}; let missing = 0;
+  for(const p of pays) for(const x of (p.pieces || [])){
+    if(fichiers[x.id]) continue;
+    try{ fichiers[x.id] = {type:x.type, data:await blobToB64(await B.files.blob(x.id))}; }catch{ missing++; }
+  }
+  const data = JSON.stringify({app:'reglements-activites', format:1, exporteLe:new Date().toISOString(), enfants, activites:acts, paiements:pays, reglages:{payeurs:payeurs()}, fichiers});
+  try{
+    await B.save(`sauvegarde-reglements-${todayKey}.json`, data);
+    if(missing) toast(`${missing} justificatif${missing>1?'s':''} introuvable${missing>1?'s':''} n’a pas pu être inclus.`);
+  }catch(e){ if(!e || e.code !== 'declined') toast('Export impossible.'); }
+}
+async function pickBackup(file){
+  let d; try{ d = JSON.parse(await file.text()); }catch{ toast('Fichier illisible.'); return; }
+  if(!d || d.app !== 'reglements-activites'){ toast('Ce fichier n’est pas une sauvegarde de cette application.'); return; }
+  const newKids = (d.enfants||[]).filter(x => x.id && !kidById(x.id));
+  const newActs = (d.activites||[]).filter(x => x.id && !actById(x.id));
+  const newPays = (d.paiements||[]).filter(x => x.id && !pays.some(p => p.id === x.id));
+  const nFiles = newPays.reduce((s,p) => s + (p.pieces||[]).filter(x => d.fichiers && d.fichiers[x.id]).length, 0);
+  F = {kind:'import'};
+  openSheet(`<h3>Importer la sauvegarde<button class="x" data-act="close" aria-label="Fermer">×</button></h3>
+    <div class="card"><p>Sauvegarde du ${esc(fmtDate((d.exporteLe||'').slice(0,10)))}. Seuls les éléments absents d’ici seront ajoutés ; rien ne sera remplacé ni supprimé.</p>
+    <dl class="kv num"><dt>Enfants</dt><dd>${newKids.length}</dd><dt>Activités</dt><dd>${newActs.length}</dd><dt>Règlements</dt><dd>${newPays.length}</dd><dt>Justificatifs</dt><dd>${nFiles}</dd></dl></div>
+    <div class="actions" style="margin-top:16px"><button class="btn" data-act="close">Annuler</button><button class="btn primary" id="do-import" ${newKids.length+newActs.length+newPays.length ? '' : 'disabled'}>Importer</button></div>`);
+  $('#do-import').onclick = async () => {
+    const btn = $('#do-import'); btn.disabled = true; btn.innerHTML = '<span class="spin"></span>Import en cours…';
+    try{
+      const map = {};
+      for(const p of newPays) for(const x of (p.pieces||[])){
+        const src = d.fichiers && d.fichiers[x.id]; if(!src || map[x.id]) continue;
+        try{ const r = await B.files.upload(b64ToBlob(src.data, src.type), src.type); map[x.id] = r.id; }catch{}
+      }
+      for(const k of newKids) await B.set('enfants', k.id, withoutId(k));
+      for(const a of newActs) await B.set('activites', a.id, withoutId(a));
+      for(const p of newPays) await B.set('paiements', p.id, {...withoutId(p), pieces:(p.pieces||[]).filter(x => map[x.id]).map(x => ({...x, id:map[x.id]}))});
+      if(d.reglages && Array.isArray(d.reglages.payeurs) && !reglages.id) await B.set('reglages', 'general', {payeurs:d.reglages.payeurs});
+      closeSheet(); toast(`Import terminé : ${newPays.length} règlement${newPays.length>1?'s':''} ajouté${newPays.length>1?'s':''}.`);
+    }catch{ btn.disabled = false; btn.textContent = 'Importer'; toast('Import interrompu. Réessayez : les éléments déjà importés ne seront pas dupliqués.'); }
+  };
+}
+
+/* ============ events ============ */
+document.addEventListener('click', e => {
+  const k = e.target.closest('[data-kid]');
+  if(k){ state.enfant = k.dataset.kid; state.filter = 'all'; render(); return; }
+  const t = e.target.closest('[data-act],[data-tab],[data-tab-go]'); if(!t) return;
+  if(t.dataset.tab || t.dataset.tabGo){ state.tab = t.dataset.tab || t.dataset.tabGo; render(); window.scrollTo({top:0}); return; }
+  const act = t.dataset.act, id = t.dataset.id;
+  if(act === 'close') closeSheet();
+  else if(act === 'new-act') openActForm(null);
+  else if(act === 'edit-act') openActForm(actById(id));
+  else if(act === 'new-kid') openKidForm(null);
+  else if(act === 'edit-kid') openKidForm(kidById(id));
+  else if(act === 'show-pay') showPay(id);
+  else if(act === 'edit-pay') openPayForm(pays.find(p => p.id === id));
+  else if(act === 'pay-for') openPayForm(null, {actId:id, k:t.dataset.k});
+  else if(act === 'export') exportCsv();
+  else if(act === 'backup') exportBackup();
+  else if(act === 'restore') $('#import-file').click();
+});
+document.addEventListener('change', e => { if(e.target.id === 'filter'){ state.filter = e.target.value; render(); } });
+document.addEventListener('input', e => { if(/^payeur-/.test(e.target.id)) savePayers(); });
+$('#import-file').onchange = e => { const f = e.target.files[0]; e.target.value = ''; if(f) pickBackup(f); };
+$('#fab').onclick = () => openPayForm(null);
+$('#scrim').onclick = closeSheet;
+$('#v-close').onclick = closeViewer;
+$('#v-save').onclick = () => savePiece(viewing);
+document.addEventListener('keydown', e => { if(e.key !== 'Escape') return; if(!$('#viewer').hidden) closeViewer(); else if(!$('#sheet').hidden) closeSheet(); });
+$('#season-prev').onclick = () => { state.season--; render(); };
+$('#season-next').onclick = () => { state.season++; render(); };
+
+/* ============ boot ============ */
+async function boot(){
+  try{ B = IS_APP ? await localBackend() : await artifactBackend(); }catch{ B = null; }
+  if(!B){
+    $('#view').innerHTML = '<div class="empty"><h3>Données indisponibles</h3><p>Ouvrez cette page depuis votre compte Claude, connecté, pour voir et saisir les règlements.</p></div>';
+    return;
+  }
+  if(IS_APP && N.App){
+    N.App.addListener('backButton', () => {
+      if(!$('#viewer').hidden) closeViewer();
+      else if(!$('#sheet').hidden) closeSheet();
+      else if(state.tab !== 'accueil'){ state.tab = 'accueil'; render(); }
+      else N.App.exitApp();
+    });
+  }
+  const onErr = () => { $('#view').innerHTML = '<div class="notice">La connexion aux données a été interrompue. Rechargez la page.</div>'; };
+  const refreshOpen = () => { if(F && F.kind === 'view') showPay(F.id); };
+  B.watch('enfants', rows => { enfants = rows; loaded.e = true; render(); }, onErr);
+  B.watch('activites', rows => { acts = rows; loaded.a = true; render(); refreshOpen(); }, onErr);
+  B.watch('paiements', rows => { pays = rows; loaded.p = true; render(); refreshOpen(); }, onErr);
+  B.watch('reglages', rows => { reglages = rows.find(r => r.id === 'general') || {payeurs:['Papa','Maman']}; loaded.r = true; if(state.tab !== 'reglages') render(); }, onErr);
+  render();
+}
+render();
+boot();
+})();
+</script>
