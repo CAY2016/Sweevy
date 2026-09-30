@@ -25,7 +25,8 @@ jobs:
           java-version: 21
           cache: gradle
 
-      - uses: android-actions/setup-android@v3
+      - name: Vérifier le SDK Android du serveur
+        run: echo "ANDROID_HOME=$ANDROID_HOME" && ls $ANDROID_HOME/platforms | tail -3
 
       - name: Installer les dépendances
         run: npm ci
