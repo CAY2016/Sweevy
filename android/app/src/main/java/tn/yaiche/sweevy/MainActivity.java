@@ -1,4 +1,4 @@
-package tn.yaiche.reglements;
+package tn.yaiche.sweevy;
 
 import com.getcapacitor.BridgeActivity;
 

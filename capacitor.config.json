@@ -1,6 +1,8 @@
 {
-  "appId": "tn.yaiche.reglements",
-  "appName": "Règlements",
+  "appId": "tn.yaiche.sweevy",
+  "appName": "Sweevy",
   "webDir": "www",
-  "android": { "allowMixedContent": false }
+  "android": {
+    "allowMixedContent": false
+  }
 }

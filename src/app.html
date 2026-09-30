@@ -1,28 +1,28 @@
-<title>Règlements des activités</title>
+<title>Sweevy</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Manrope:wght@400;500;600;700&display=swap">
 <style>
-/* Layout: single mobile-first column (max 720px), sticky header (season + children), bottom tab bar + floating "add" button, bottom sheets for forms */
+/* Sweevy — royal blue & white. Layout: single mobile-first column (max 720px), sticky header (season + children), bottom tab bar + floating "add" button, bottom sheets for forms */
 :root{
-  --bg:#F4F6F3; --surface:#FFFFFF; --ink:#16201E; --muted:#5C6964; --line:#DCE3DE;
-  --accent:#0E6B5C; --accent-ink:#FFFFFF; --accent-soft:#DCEEE9;
+  --bg:#F3F5FC; --surface:#FFFFFF; --ink:#101A45; --muted:#58618A; --line:#DDE2F2;
+  --accent:#1B3FC4; --accent-ink:#FFFFFF; --accent-soft:#E4EAFD;
   --due:#B03F2D; --due-soft:#F7E2DC; --ok:#2B7A47; --ok-soft:#DFF0E4; --warn:#8F6200; --warn-soft:#F5EACD;
   --extra:#5B4BB0; --extra-soft:#E8E4F7;
-  --scrim:rgba(10,18,16,.45); --shadow:0 10px 30px rgba(15,30,26,.12);
+  --scrim:rgba(8,14,40,.45); --shadow:0 10px 30px rgba(16,26,69,.14);
   --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
   --f-body:"Manrope", "Segoe UI", system-ui, -apple-system, sans-serif;
   --r:14px;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#0F1513; --surface:#18211E; --ink:#E6EEEA; --muted:#97A5A0; --line:#2B3632;
-  --accent:#4FC2A8; --accent-ink:#06201A; --accent-soft:#183A33;
+  --bg:#0A1030; --surface:#121A42; --ink:#E8ECFF; --muted:#9AA3CC; --line:#253063;
+  --accent:#7D9BFF; --accent-ink:#0A1030; --accent-soft:#1C2A6B;
   --due:#F08A74; --due-soft:#3B2420; --ok:#6CCB8E; --ok-soft:#1B3325; --warn:#E5B64C; --warn-soft:#3A3019;
   --extra:#B3A6F2; --extra-soft:#2A2545;
   --scrim:rgba(0,0,0,.6); --shadow:0 10px 30px rgba(0,0,0,.45); color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#0F1513; --surface:#18211E; --ink:#E6EEEA; --muted:#97A5A0; --line:#2B3632;
-  --accent:#4FC2A8; --accent-ink:#06201A; --accent-soft:#183A33;
+  --bg:#0A1030; --surface:#121A42; --ink:#E8ECFF; --muted:#9AA3CC; --line:#253063;
+  --accent:#7D9BFF; --accent-ink:#0A1030; --accent-soft:#1C2A6B;
   --due:#F08A74; --due-soft:#3B2420; --ok:#6CCB8E; --ok-soft:#1B3325; --warn:#E5B64C; --warn-soft:#3A3019;
   --extra:#B3A6F2; --extra-soft:#2A2545;
   --scrim:rgba(0,0,0,.6); --shadow:0 10px 30px rgba(0,0,0,.45); color-scheme:dark}
@@ -37,7 +37,8 @@ button,input,select,textarea{font:inherit;color:inherit}
 /* Header */
 header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
 .top-in{max-width:720px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap}
-.brand{font-family:var(--f-display);font-weight:700;font-size:20px;letter-spacing:-.01em;margin:0}
+.brand{font-family:var(--f-display);font-weight:700;font-size:22px;letter-spacing:-.02em;margin:0;display:flex;align-items:center;gap:10px;color:var(--ink)}
+.brand .mark{width:32px;height:32px;flex:none}
 .season{display:flex;align-items:center;gap:2px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:2px}
 .season button{border:0;background:transparent;width:32px;height:32px;border-radius:999px;cursor:pointer;color:var(--muted);font-size:18px;line-height:1}
 .season button:hover{background:var(--accent-soft);color:var(--accent)}
@@ -185,7 +186,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--accent);outline-
 
 <header class="top">
   <div class="top-in">
-    <h1 class="brand">Règlements des activités</h1>
+    <h1 class="brand"><svg class="mark" viewBox="0 0 512 512" aria-hidden="true"><rect width="512" height="512" rx="116" fill="var(--accent)"/><path d="M338 164c-22-26-58-38-98-34-52 5-82 36-78 74 5 48 70 58 108 72 36 13 62 34 58 72-4 42-48 70-104 66-40-3-70-20-88-46" fill="none" stroke="var(--accent-ink)" stroke-width="54" stroke-linecap="round" stroke-linejoin="round"/><circle cx="404" cy="112" r="28" fill="var(--accent-ink)"/></svg>Sweevy</h1>
     <div class="season" aria-label="Saison">
       <button id="season-prev" aria-label="Saison précédente">‹</button>
       <span id="season-label" class="num">2026-2027</span>
@@ -229,14 +230,14 @@ const $$ = s => document.querySelectorAll(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const N = window.NATIVE || null;          // present only in the Android app
 const IS_APP = !!N;
-const APP_VERSION = '2.0';
+const APP_VERSION = '2.1';
 const MOIS = ['janv.','févr.','mars','avr.','mai','juin','juil.','août','sept.','oct.','nov.','déc.'];
 const MOIS_L = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
 const FREQ = {mensuel:'Mensuel', trimestriel:'Par trimestre', annuel:'Annuel (saison)', ponctuel:'Ponctuel'};
 const FREQ_UNIT = {mensuel:'/ mois', trimestriel:'/ trimestre', annuel:'/ saison', ponctuel:''};
 const MODES = ['Espèces','Chèque','Virement','Carte','Autre'];
 const CATS = ['Inscription','Licence / assurance','Tenue / équipement','Compétition / tournoi','Sortie / stage','Certificat médical','Autre'];
-const COLORS = ['#0E8A74','#3F6FD8','#C8553D','#9B5DE5','#D69E2E','#2B9EB3'];
+const COLORS = ['#1B3FC4','#0E8A74','#C8553D','#9B5DE5','#D69E2E','#2B9EB3'];
 const TRIM = [{k:'T1',label:'1er trimestre',court:'1er trim.',sub:'sept.–déc.',idx:0},{k:'T2',label:'2e trimestre',court:'2e trim.',sub:'janv.–mars',idx:4},{k:'T3',label:'3e trimestre',court:'3e trim.',sub:'avr.–juin',idx:7}];
 const EXT = {'image/jpeg':'jpg','image/png':'png','image/webp':'webp','application/pdf':'pdf'};
 const ICON_CLIP = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11l-8.5 8.5a5 5 0 0 1-7-7L14 4a3.3 3.3 0 0 1 4.7 4.7l-8.5 8.5a1.7 1.7 0 0 1-2.4-2.4L15.5 7"/></svg>';
@@ -907,7 +908,7 @@ function renderActForm(){
 }
 
 /* ============ child form ============ */
-const KID_COLORS = ['#3F6FD8','#C8553D','#0E8A74','#9B5DE5','#D69E2E','#2B9EB3'];
+const KID_COLORS = ['#1B3FC4','#C8553D','#0E8A74','#9B5DE5','#D69E2E','#2B9EB3'];
 function openKidForm(k){
   F = {kind:'kid', id:k ? k.id : null, creeLe:k && k.creeLe, prenom:k && k.prenom || '', couleur:k && k.couleur || KID_COLORS[enfants.length % KID_COLORS.length]};
   renderKidForm();

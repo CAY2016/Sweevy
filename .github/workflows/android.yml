@@ -45,17 +45,17 @@ jobs:
         run: |
           VERSION=$(grep -m1 versionName android/app/build.gradle | sed -E 's/.*"(.*)".*/\1/')
           echo "VERSION=$VERSION" >> $GITHUB_ENV
-          cp android/app/build/outputs/apk/release/app-release.apk "Reglements-$VERSION.apk"
+          cp android/app/build/outputs/apk/release/app-release.apk "Sweevy-$VERSION.apk"
 
       - uses: actions/upload-artifact@v4
         with:
-          name: Reglements-apk
-          path: Reglements-*.apk
+          name: Sweevy-apk
+          path: Sweevy-*.apk
 
       - name: Publier la version
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v${{ env.VERSION }}-${{ github.run_number }}
-          name: Règlements ${{ env.VERSION }} (build ${{ github.run_number }})
+          name: Sweevy ${{ env.VERSION }} (build ${{ github.run_number }})
           body: APK à installer sur Android. Téléchargez le fichier .apk ci-dessous depuis votre téléphone.
-          files: Reglements-*.apk
+          files: Sweevy-*.apk

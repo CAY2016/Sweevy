@@ -1,6 +1,6 @@
-# Règlements des activités
+# Sweevy
 
-Application Android (Capacitor) de suivi des règlements des activités des enfants, avec justificatifs et lecture automatique des reçus (ML Kit, sur l'appareil).
+Sweevy — application Android (Capacitor) de suivi des règlements des activités des enfants, avec justificatifs et lecture automatique des reçus (ML Kit, sur l'appareil).
 
 - `src/app.html` : l'application (le même fichier sert aussi la version web publiée sur claude.ai).
 - `src/native.js` : accès aux fonctions natives (fichiers, partage, lecture de reçu, bouton retour).
